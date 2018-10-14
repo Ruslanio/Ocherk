@@ -5,6 +5,8 @@ import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.databinding.DataBindingUtil
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 
 import android.support.annotation.StringRes
@@ -25,7 +27,7 @@ import javax.inject.Inject
 /**
  * Created by Ruslanio on 28.01.2018.
  */
-abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity(), BaseConstants, BaseViewInterface<VM>, HasSupportFragmentInjector {
+abstract class BaseActivity<VM : BaseViewModel, VB : ViewDataBinding> : AppCompatActivity(), BaseConstants, BaseViewInterface<VM>, HasSupportFragmentInjector {
 
     @Inject
     lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
@@ -43,7 +45,7 @@ abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity(), BaseConst
     @Inject
     lateinit var viewModelFactory: BaseViewModelFactory
 
-
+    lateinit var binding : VB
     protected var navigator: Navigator? = null
 
     private val lifecycleRegistry: LifecycleRegistry = LifecycleRegistry(this)
@@ -53,8 +55,7 @@ abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity(), BaseConst
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
-        setContentView(getLayoutId())
-        ButterKnife.bind(this)
+        binding = DataBindingUtil.setContentView(this, getLayoutId())
         viewModel = assignViewModel(viewModelFactory)
         onInit(savedInstanceState)
     }
