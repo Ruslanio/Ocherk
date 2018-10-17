@@ -22,12 +22,17 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
 
 /**
  * Created by Ruslanio on 28.01.2018.
  */
 abstract class BaseActivity<VM : BaseViewModel, VB : ViewDataBinding> : AppCompatActivity(), BaseConstants, BaseViewInterface<VM>, HasSupportFragmentInjector {
+
+
+    @Inject
+    lateinit var navigatorHolder: NavigatorHolder
 
     @Inject
     lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
@@ -63,12 +68,12 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewDataBinding> : AppCompa
 
     override fun onResumeFragments() {
         super.onResumeFragments()
-//        if (navigator != null)
-//            navigatorHolder.setNavigator(navigator)
+        if (navigator != null)
+            navigatorHolder.setNavigator(navigator)
     }
 
     override fun onPause() {
-//        navigatorHolder.removeNavigator()
+        navigatorHolder.removeNavigator()
         super.onPause()
     }
 

@@ -3,4 +3,6 @@
     <string name="feed">Feed</string>
     <string name="bookmarks">Bookmarks</string>
     <string name="settings">Settings</string>
+    <string name="test_title">Как деградировать еще сильнее</string>
+    <string name="test_author">Иванов Дмитрий</string>
 </resources>

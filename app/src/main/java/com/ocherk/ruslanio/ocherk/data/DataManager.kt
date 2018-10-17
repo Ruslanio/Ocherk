@@ -8,6 +8,7 @@ import com.ocherk.ruslanio.ocherk.data.remote.util.RequestType
 import com.ocherk.ruslanio.ocherk.data.remote.util.SearchSpecification
 import com.ocherk.ruslanio.ocherk.exceptions.InvalidSearchSpecException
 import io.reactivex.Observable
+import io.reactivex.Single
 import javax.inject.Inject
 
 class DataManager @Inject constructor(private var dbHelper: DBHelper, private var apiHelper: ApiHelper) {
@@ -19,7 +20,7 @@ class DataManager @Inject constructor(private var dbHelper: DBHelper, private va
 
     }
 
-    fun getNewsFromWeb(searchSpecification: SearchSpecification): Observable<NewsList> {
+    fun getNewsFromWeb(searchSpecification: SearchSpecification): Single<NewsList> {
         return when {
             searchSpecification.requestType == RequestType.TOP_HEADLINERS -> apiHelper.getTopHeadliners()
             searchSpecification.requestType == RequestType.EVERYTHING -> apiHelper.getEveryThing(searchSpecification.query)

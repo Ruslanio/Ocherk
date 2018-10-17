@@ -6,6 +6,8 @@ import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.databinding.DataBindingUtil
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
@@ -23,7 +25,8 @@ import javax.inject.Inject
 /**
  * Created by Ruslanio on 19.02.2018.
  */
-abstract class BaseFragment<VM : BaseViewModel> : Fragment(), BaseViewInterface<VM> {
+abstract class BaseFragment<VM : BaseViewModel, VB : ViewDataBinding> : Fragment(), BaseViewInterface<VM> {
+
     @Inject
     lateinit var viewModelFactory: BaseViewModelFactory
 
@@ -37,6 +40,8 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment(), BaseViewInterface<
     protected lateinit var viewModel: VM
         private set
 
+    lateinit var binding : VB
+
     //Check this with isAdded()
     protected var activityContext: Context? = activity
 
@@ -44,7 +49,8 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment(), BaseViewInterface<
     private val lifecycleRegistry: LifecycleRegistry = LifecycleRegistry(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(getLayoutId(), container, false)
+        binding = DataBindingUtil.inflate(inflater,getLayoutId(), container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,20 +71,20 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment(), BaseViewInterface<
     }
 
 
-    fun BaseFragment<VM>.showToast(message: String) {
+    fun BaseFragment<VM,VB>.showToast(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
-    fun BaseFragment<VM>.showToast(@StringRes messageId: Int) {
+    fun BaseFragment<VM,VB>.showToast(@StringRes messageId: Int) {
         Toast.makeText(context, messageId, Toast.LENGTH_SHORT).show()
     }
 
-    fun BaseFragment<VM>.showSnackBar(message: String) {
+    fun BaseFragment<VM,VB>.showSnackBar(message: String) {
         if (isAdded)
             Snackbar.make((activityContext as Activity).window.decorView, message, Snackbar.LENGTH_LONG).show()
     }
 
-    fun BaseFragment<VM>.showSnackBar(@StringRes messageId: Int) {
+    fun BaseFragment<VM,VB>.showSnackBar(@StringRes messageId: Int) {
         if (isAdded)
             Snackbar.make((activityContext as Activity).window.decorView, messageId, Snackbar.LENGTH_LONG).show()
     }

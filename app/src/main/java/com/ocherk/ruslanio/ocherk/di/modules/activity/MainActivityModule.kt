@@ -10,9 +10,4 @@ import ru.terrakok.cicerone.Router
 @Module
 class MainActivityModule {
 
-    @MainScope
-    @Provides
-    fun provideNavigatorHolder(cicerone: Cicerone<Router>): NavigatorHolder {
-        return cicerone.navigatorHolder
-    }
 }
