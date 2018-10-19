@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.ocherk.ruslanio.ocherk.R
-import com.ocherk.ruslanio.ocherk.data.remote.pojo.Article
+import com.ocherk.ruslanio.ocherk.data.local.model.Article
 import com.ocherk.ruslanio.ocherk.databinding.ActivityMainBinding
 import com.ocherk.ruslanio.ocherk.databinding.ItemArticleBinding
 import java.util.*

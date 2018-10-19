@@ -4,10 +4,15 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
+import com.ocherk.ruslanio.ocherk.data.local.dao.ArticleDAO
 import com.ocherk.ruslanio.ocherk.data.local.dao.NewsDAO
+import com.ocherk.ruslanio.ocherk.data.local.dao.SourceDAO
+import com.ocherk.ruslanio.ocherk.data.local.model.Article
+import com.ocherk.ruslanio.ocherk.data.local.model.NewsList
 import com.ocherk.ruslanio.ocherk.data.local.model.NewsModel
+import com.ocherk.ruslanio.ocherk.data.local.model.Source
 
-@Database(entities = arrayOf(NewsModel::class), version = 1)
+@Database(entities = arrayOf(NewsList::class, Article::class, Source::class), version = 1)
 abstract class MainDatabase : RoomDatabase() {
 
     companion object {
@@ -19,4 +24,8 @@ abstract class MainDatabase : RoomDatabase() {
     }
 
     abstract fun newsDao() : NewsDAO
+
+    abstract fun articleDao() : ArticleDAO
+
+    abstract fun sourceDao() : SourceDAO
 }

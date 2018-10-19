@@ -2,7 +2,7 @@ package com.ocherk.ruslanio.ocherk.data.remote.interfaces
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
-import com.ocherk.ruslanio.ocherk.data.remote.pojo.NewsList
+import com.ocherk.ruslanio.ocherk.data.local.model.NewsList
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.GET

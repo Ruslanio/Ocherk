@@ -1,10 +1,11 @@
 package com.ocherk.ruslanio.ocherk.data.remote
 
 import android.arch.lifecycle.LiveData
+import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.ocherk.ruslanio.ocherk.data.local.model.NewsList
 import com.ocherk.ruslanio.ocherk.data.remote.interfaces.GetService
 import com.ocherk.ruslanio.ocherk.data.remote.interfaces.PostService
-import com.ocherk.ruslanio.ocherk.data.remote.pojo.NewsList
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
@@ -24,19 +25,17 @@ class ApiHelper {
     private var getService: GetService
     private var postService: PostService
 
+    private val gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
+
     init {
-        getService = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
+        val retrofit = Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .baseUrl(BASE_URL)
                 .build()
-                .create(GetService::class.java)
-        postService = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-                .baseUrl(BASE_URL)
-                .build()
-                .create(PostService::class.java)
+
+        getService = retrofit.create(GetService::class.java)
+        postService = retrofit.create(PostService::class.java)
     }
 
     fun getTopHeadliners(country: String = BASE_COUNTRY): Single<NewsList> {

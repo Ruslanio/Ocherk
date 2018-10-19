@@ -4,7 +4,7 @@
     <data>
         <variable
             name="article"
-            type="com.ocherk.ruslanio.ocherk.data.remote.pojo.Article"/>
+            type="com.ocherk.ruslanio.ocherk.data.local.model.Article"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
