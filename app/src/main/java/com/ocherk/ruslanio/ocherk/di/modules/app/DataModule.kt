@@ -21,7 +21,6 @@ class DataModule {
     @Provides
     fun provideDBHelper(context: Context): DBHelper {
         val mainDatabase = Room.databaseBuilder(context, MainDatabase::class.java, MainDatabase.DB_NAME)
-                .allowMainThreadQueries() //TODO remove
                 .build()
         return DBHelper(mainDatabase)
     }

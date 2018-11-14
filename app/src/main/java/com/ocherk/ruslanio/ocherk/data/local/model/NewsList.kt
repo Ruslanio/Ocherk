@@ -23,4 +23,6 @@ class NewsList constructor() : BaseDataObject() {
     @Ignore
     var articles: List<Article> = Collections.emptyList()
 
+    var date: Date? = null
+
 }

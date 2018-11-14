@@ -1,7 +1,9 @@
 package com.ocherk.ruslanio.ocherk.data.local.model
 
+import android.arch.persistence.room.Embedded
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.ForeignKey
+import android.arch.persistence.room.Ignore
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.ocherk.ruslanio.ocherk.data.local.base.BaseDataObject
@@ -10,11 +12,13 @@ import com.ocherk.ruslanio.ocherk.data.local.base.BaseDataObject
         ForeignKey(
                 entity = NewsList::class,
                 parentColumns = arrayOf("id"),
-                childColumns = arrayOf("newsListId"))))
+                childColumns = arrayOf("newsListId")))
+)
 class Article : BaseDataObject() {
 
     @SerializedName("source")
     @Expose
+    @Embedded(prefix = "source_")
     var source: Source? = null
 
     @SerializedName("author")
@@ -46,4 +50,5 @@ class Article : BaseDataObject() {
     var content: String? = null
 
     var newsListId: Long? = null
+
 }

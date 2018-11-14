@@ -52,10 +52,12 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:1.1.0"
     annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
 
-    // Room (use 1.1.0-alpha1 for latest alpha)
+    // Room
     implementation "android.arch.persistence.room:runtime:$room_version"
     kapt "android.arch.persistence.room:compiler:$room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+    implementation "android.arch.persistence.room:rxjava2:$room_version"
+    androidTestImplementation "android.arch.core:core-testing:$room_version"
 
     //Design
     implementation "com.android.support:support-v4:$support_library_version"

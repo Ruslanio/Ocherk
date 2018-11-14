@@ -4,7 +4,6 @@ import android.databinding.ObservableField
 import android.support.design.widget.BottomNavigationView
 import com.ocherk.ruslanio.ocherk.R
 import com.ocherk.ruslanio.ocherk.data.DataManager
-import com.ocherk.ruslanio.ocherk.data.remote.pojo.NewsList
 import com.ocherk.ruslanio.ocherk.data.remote.util.SearchSpecification
 import com.ocherk.ruslanio.ocherk.exceptions.InvalidSearchSpecException
 import com.ocherk.ruslanio.ocherk.mvvm.BaseViewModel

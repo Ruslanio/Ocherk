@@ -14,7 +14,7 @@ class FeedFragment : BaseFragment<FeedViewModel,FragmentFeedBinding>(){
 
     override fun onInit(savedInstanceState: Bundle?) {
         binding.viewmodel = viewModel
-        viewModel.getNews()
+        viewModel.getNews(false)
     }
 
     override fun getViewModelClass(): Class<FeedViewModel> {

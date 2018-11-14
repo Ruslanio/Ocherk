@@ -14,12 +14,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_news"
+        <android.support.v4.widget.SwipeRefreshLayout
+            app:refreshing="@{viewmodel.isLoading}"
+            app:onRefreshListener="@{viewmodel.refreshListener}"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:adapter="@{viewmodel.adapter}"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_news"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adapter="@{viewmodel.adapter}"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
     </LinearLayout>
 </layout>
