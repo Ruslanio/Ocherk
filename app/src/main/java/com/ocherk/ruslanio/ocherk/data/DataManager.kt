@@ -83,4 +83,8 @@ class DataManager @Inject constructor(private var dbHelper: DBHelper, private va
         return false //TODO is there fresh articles in DB check
     }
 
+    fun getBookmarks() : Single<List<Article>>{
+        return dbHelper.getBookmarks()
+    }
+
 }

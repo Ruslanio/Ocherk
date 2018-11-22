@@ -51,4 +51,6 @@ class Article : BaseDataObject() {
 
     var newsListId: Long? = null
 
+    var isBookmark: Boolean = false
+
 }

@@ -61,4 +61,10 @@ class DBHelper constructor(private var mainDatabase: MainDatabase) {
                 .subscribeOn(Schedulers.io())
     }
 
+    fun getBookmarks() : Single<List<Article>>{
+        return mainDatabase.articleDao().getAllBookMarks()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+    }
+
 }
