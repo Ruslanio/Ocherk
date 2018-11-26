@@ -92,7 +92,7 @@ dependencies {
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
     //Cicerone
-    implementation 'ru.terrakok.cicerone:cicerone:1.0'
+    implementation 'ru.terrakok.cicerone:cicerone:4.0.2'
 
     //Retrofit
     implementation 'com.google.code.gson:gson:2.8.2'

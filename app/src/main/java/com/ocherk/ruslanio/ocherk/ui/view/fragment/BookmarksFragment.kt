@@ -6,7 +6,7 @@ import com.ocherk.ruslanio.ocherk.databinding.FragmentBookmarksBinding
 import com.ocherk.ruslanio.ocherk.mvvm.BaseFragment
 import com.ocherk.ruslanio.ocherk.viewmodel.BookmarksViewModel
 
-class BookmarksFragment :BaseFragment<BookmarksViewModel,FragmentBookmarksBinding>(){
+class  BookmarksFragment :BaseFragment<BookmarksViewModel,FragmentBookmarksBinding>(){
     override fun getLayoutId(): Int {
         return R.layout.fragment_bookmarks
     }

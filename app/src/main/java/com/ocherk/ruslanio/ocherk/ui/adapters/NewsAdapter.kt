@@ -3,6 +3,7 @@ package com.ocherk.ruslanio.ocherk.ui.adapters
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.ocherk.ruslanio.ocherk.R
 import com.ocherk.ruslanio.ocherk.data.local.model.Article
@@ -18,6 +19,8 @@ class NewsAdapter() : RecyclerView.Adapter<NewsAdapter.ArticleHolder>() {
             notifyDataSetChanged()
         }
 
+    var onItemClickListener : View.OnClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = DataBindingUtil.inflate<ItemArticleBinding>(inflater, R.layout.item_article, parent, false)
@@ -32,11 +35,12 @@ class NewsAdapter() : RecyclerView.Adapter<NewsAdapter.ArticleHolder>() {
         holder.bind(articles[position])
     }
 
-    class ArticleHolder(val binding: ItemArticleBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ArticleHolder(val binding: ItemArticleBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(article: Article) {
             binding.article = article
             binding.executePendingBindings()
+            binding.listener = onItemClickListener
         }
     }
 }

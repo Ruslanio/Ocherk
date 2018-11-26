@@ -1,6 +1,7 @@
 package com.production.ruslanio.caloriescalculator.mvvm
 
 import android.os.Bundle
+import android.support.annotation.IdRes
 import android.support.annotation.LayoutRes
 import com.ocherk.ruslanio.ocherk.mvvm.BaseViewModel
 
@@ -21,5 +22,11 @@ interface BaseViewInterface<VM : BaseViewModel> {
             return null
         else
             return this.toInt()
+    }
+
+    //override this to specify fragment container for activity
+    @IdRes
+    fun getFragmentContainerID(): Int {
+        return -1;
     }
 }

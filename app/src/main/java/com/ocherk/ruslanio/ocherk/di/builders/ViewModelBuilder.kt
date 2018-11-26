@@ -4,10 +4,7 @@ import android.arch.lifecycle.ViewModelProvider
 import com.ocherk.ruslanio.ocherk.di.ViewModelKey
 import com.ocherk.ruslanio.ocherk.mvvm.BaseViewModel
 import com.ocherk.ruslanio.ocherk.mvvm.BaseViewModelFactory
-import com.ocherk.ruslanio.ocherk.viewmodel.BookmarksViewModel
-import com.ocherk.ruslanio.ocherk.viewmodel.FeedViewModel
-import com.ocherk.ruslanio.ocherk.viewmodel.MainViewModel
-import com.ocherk.ruslanio.ocherk.viewmodel.SettingsViewModel
+import com.ocherk.ruslanio.ocherk.viewmodel.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -34,6 +31,11 @@ abstract class ViewModelBuilder {
     @IntoMap
     @ViewModelKey(SettingsViewModel::class)
     abstract fun bindSettingsVM(viewModel: SettingsViewModel): BaseViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailsViewModel::class)
+    abstract fun bindDetailsVM(viewModel: DetailsViewModel): BaseViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: BaseViewModelFactory): ViewModelProvider.Factory

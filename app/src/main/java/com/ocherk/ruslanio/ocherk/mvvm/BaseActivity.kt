@@ -23,6 +23,7 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
+import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import javax.inject.Inject
 
 /**
@@ -53,13 +54,17 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewDataBinding> : AppCompa
     lateinit var binding : VB
     protected var navigator: Navigator? = null
 
+
+
     private val lifecycleRegistry: LifecycleRegistry = LifecycleRegistry(this)
+
 
     @Suppress("UNCHECKED_CAST")
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
+        navigator = SupportAppNavigator(this,getFragmentContainerID())
         binding = DataBindingUtil.setContentView(this, getLayoutId())
         viewModel = assignViewModel(viewModelFactory)
         onInit(savedInstanceState)

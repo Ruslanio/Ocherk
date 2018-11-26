@@ -5,6 +5,9 @@
         <variable
             name="article"
             type="com.ocherk.ruslanio.ocherk.data.local.model.Article"/>
+        <variable
+            name="listener"
+            type="android.view.View.OnClickListener"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,6 +21,7 @@
             android:layout_height="wrap_content">
 
             <android.support.constraint.ConstraintLayout
+                android:onClick="@{listener}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
