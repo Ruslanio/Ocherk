@@ -89,4 +89,8 @@ class DataManager @Inject constructor(private var dbHelper: DBHelper, private va
         return dbHelper.getBookmarks()
     }
 
+    fun getArticleByIdFromDb(articleId : Long) : Single<Article>{
+        return dbHelper.getArticleById(articleId)
+    }
+
 }

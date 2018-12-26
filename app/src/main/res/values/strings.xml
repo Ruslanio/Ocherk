@@ -5,4 +5,6 @@
     <string name="settings">Settings</string>
     <string name="test_title">Как деградировать еще сильнее</string>
     <string name="test_author">Иванов Дмитрий</string>
+    <string name="article_name">article name</string>
+    <string name="no_article_error">Sorry, but this article is unavailable now</string>
 </resources>

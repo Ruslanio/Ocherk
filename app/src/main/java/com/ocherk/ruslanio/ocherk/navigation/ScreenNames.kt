@@ -8,6 +8,7 @@ import com.ocherk.ruslanio.ocherk.ui.view.activity.MainActivity
 import com.ocherk.ruslanio.ocherk.ui.view.fragment.BookmarksFragment
 import com.ocherk.ruslanio.ocherk.ui.view.fragment.FeedFragment
 import com.ocherk.ruslanio.ocherk.ui.view.fragment.SettingsFragment
+import com.ocherk.ruslanio.ocherk.util.ARTICLE_ID_KEY
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 class ScreenNames {
@@ -46,9 +47,11 @@ class ScreenNames {
         }
     }
 
-    class DetailsScreen : SupportAppScreen(){
+    class DetailsScreen(var articleId: Long) : SupportAppScreen(){
+
         override fun getActivityIntent(context: Context?): Intent {
             return Intent(context, DetailsActivity::class.java)
+                    .putExtra(ARTICLE_ID_KEY, articleId)
         }
     }
 }

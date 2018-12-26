@@ -5,6 +5,7 @@ import android.databinding.ObservableField
 import android.support.v4.widget.SwipeRefreshLayout
 import android.view.View
 import com.ocherk.ruslanio.ocherk.data.DataManager
+import com.ocherk.ruslanio.ocherk.data.local.model.Article
 import com.ocherk.ruslanio.ocherk.data.remote.util.SearchSpecification
 import com.ocherk.ruslanio.ocherk.mvvm.BaseViewModel
 import com.ocherk.ruslanio.ocherk.navigation.ScreenNames
@@ -23,9 +24,11 @@ class FeedViewModel @Inject constructor(val router: Router, val dataManager: Dat
     }
 
     init {
-        adapter.onItemClickListener = View.OnClickListener {
-            router.navigateTo(ScreenNames.DetailsScreen())
-        }
+        adapter.onItemClickListener = (object : NewsAdapter.OnArticleClickListener {
+            override fun onClick(articleId: Long) {
+                router.navigateTo(ScreenNames.DetailsScreen(articleId))
+            }
+        })
     }
 
     fun getNews(forceUpdate: Boolean) {

@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.ocherk.ruslanio.ocherk.R
 import com.ocherk.ruslanio.ocherk.databinding.ActivityDetailsBinding
 import com.ocherk.ruslanio.ocherk.mvvm.BaseActivity
+import com.ocherk.ruslanio.ocherk.util.ARTICLE_ID_KEY
 import com.ocherk.ruslanio.ocherk.viewmodel.DetailsViewModel
 
 class DetailsActivity : BaseActivity<DetailsViewModel, ActivityDetailsBinding>() {
@@ -14,6 +15,7 @@ class DetailsActivity : BaseActivity<DetailsViewModel, ActivityDetailsBinding>()
     }
 
     override fun onInit(savedInstanceState: Bundle?) {
+        viewModel.showDetails(intent.getLongExtra(ARTICLE_ID_KEY, -1L))
         binding.viewmodel = viewModel
     }
 

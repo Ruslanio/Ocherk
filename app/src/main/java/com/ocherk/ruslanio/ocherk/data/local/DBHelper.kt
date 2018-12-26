@@ -67,4 +67,10 @@ class DBHelper constructor(private var mainDatabase: MainDatabase) {
                 .subscribeOn(Schedulers.io())
     }
 
+    fun getArticleById(articleId : Long) : Single<Article>{
+        return mainDatabase.articleDao().getArticleById(articleId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+    }
+
 }

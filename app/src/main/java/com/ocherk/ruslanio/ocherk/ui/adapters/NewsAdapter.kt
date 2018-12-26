@@ -19,7 +19,7 @@ class NewsAdapter() : RecyclerView.Adapter<NewsAdapter.ArticleHolder>() {
             notifyDataSetChanged()
         }
 
-    var onItemClickListener : View.OnClickListener? = null
+    var onItemClickListener : OnArticleClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -40,7 +40,13 @@ class NewsAdapter() : RecyclerView.Adapter<NewsAdapter.ArticleHolder>() {
         fun bind(article: Article) {
             binding.article = article
             binding.executePendingBindings()
-            binding.listener = onItemClickListener
+            binding.listener = View.OnClickListener {
+                onItemClickListener?.onClick(article.id)
+            }
         }
+    }
+
+    interface OnArticleClickListener{
+        fun onClick(articleId: Long)
     }
 }

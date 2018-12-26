@@ -11,4 +11,7 @@ abstract class ArticleDAO : BaseDao<Article>() {
 
     @Query("SELECT * FROM table_article WHERE isBookmark = 1")
     abstract fun getAllBookMarks(): Single<List<Article>>
+
+    @Query("SELECT * FROM table_article WHERE id = :articleId")
+    abstract fun getArticleById(articleId: Long): Single<Article>
 }
